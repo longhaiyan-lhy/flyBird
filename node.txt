@@ -1,0 +1,61 @@
+小游戏的主要对象:
+    game.js
+        小游戏全局入口文件，是小游戏必须的文件
+    game.json
+        小游戏的配置文件，也是必须的
+    Main.js
+        程序的主类，主要用来初始化canvas和一些全局对象，以及绑定点击事件
+    Director.js
+        导演类，用来控制游戏的逻辑和游戏对象的创建于销毁，控制游戏的主循环
+    DataStore.js
+        变量池，存储游戏需要长期保存的变量，以及需要定时销毁的变量
+    Resources.js
+        游戏的资源数组
+    ResourcesLoader.js
+        资源加载器，保证游戏是在图片及音乐加载完成后开始主循环
+        防止图片未加载成功canvas就开始渲染图片
+    Sprite.js
+        游戏精灵的基类(父类)，背景图、小鸟图等都是它的子类
+    Background.js
+        背景图
+    Land.js
+        地板图
+    Pipe.js
+        水管的父类
+    UpPipe.js
+        上部水管
+    DownPipe.js
+        下部水管
+    Birds.js
+        小鸟图
+    Score.js
+        得分类
+    StartButton.js
+        重新开始的按钮图
+
+项目结构:
+    /-------------
+        |--audio/   保存音频文件
+        |--images/  保存图片文件
+        |--js/
+            |--base/    
+                |--Resources.js
+                |--ResourcesLoader.js
+                |--Sprite.js
+                |--DataStore.js
+            |--player/
+                |--Birds.js
+                |--Score.js
+                |--StartButton.js
+            |--runtime/
+                |--Background.js
+                |--Pipe.js
+                |--UpPipe.js
+                |--DownPipe.js
+                |--Land.js
+            |--Director.js
+        |--index.html
+        |--game.js
+        |--game.json
+        |--project.config.json
+        |--Main.js
