@@ -30,7 +30,7 @@ export class DataStore{
     /**
      *  get根据给定的key获取对应的值
      */
-    get(get){
+    get(key){
         return this.map.get(key);
     };
     /**

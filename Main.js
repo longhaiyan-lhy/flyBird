@@ -1,5 +1,9 @@
 import { ResourcesLoader } from "./js/base/ResourcesLoader.js";
 import { DataStore } from "./js/base/DataStore.js";
+import { Background } from "./js/runtime/Background.js";
+import { Director } from "./js/Director.js";
+import { Land } from "./js/runtime/Land.js";
+import { Bird } from "./js/player/Birds.js";
 
 export class Main{
     constructor(){
@@ -12,6 +16,8 @@ export class Main{
         this.loader = new ResourcesLoader();
         // 获取变量池“
         this.dataStore = DataStore.getInstance();
+        // 获取导演
+        this.director = Director.getInstance();
         // console.log(this.loader);
         // let land = this.loader.map.get('land');
         // let _this = this;
@@ -27,7 +33,40 @@ export class Main{
         // 将资源保存到变量池中
         // 不适用put保存的原因: put保存的数据会定期销毁
         // 而使用属性的方式保存的数据是长期存在的，不会定期销毁
-        this.dataStore.map = map;
+        this.dataStore.imgs = map;
+        this.dataStore.canvas = this.canvas;
         this.dataStore.ctx = this.ctx;
+        this.init();
+    }
+
+
+
+    // 初始化游戏数据
+    init(){
+        this.director.isGameOver = false;
+        this.dataStore
+            .put('background',new Background())
+            .put('land',new Land)
+            .put('pipes',[])
+            .put('birds',new Bird());
+        this.director.createPipe();
+        this.director.run();
+        this.addClick();
+    }
+
+    addClick(){
+        this.canvas.addEventListener('touchstart',e=>{
+            // 点击事件有两个效果
+            // 游戏结束，点击重新开始
+            // 游戏进行中,点击小鸟向上一段距离
+            if(this.director.isGameOver){
+                // 游戏结束
+                // this.dataStore.destroy();
+                this.init();
+            }else{
+                // 游戏进行中, 小鸟向上一段距离
+                this.director.birdsEvent();
+            }
+        });
     }
 }
