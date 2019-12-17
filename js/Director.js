@@ -1,10 +1,12 @@
 import { DataStore } from "./base/DataStore.js";
 import { UpPipe } from "./runtime/UpPipe.js";
 import { DownPipe } from "./runtime/DownPipe.js";
+import { WxAPI } from "../WxAPI.js";
 // 导演类，控制游戏的逻辑
 export class Director{
     constructor(){
         this.dataStore = DataStore.getInstance();
+        this.wxApi = new WxAPI();
     }
 
     static getInstance(){
@@ -120,6 +122,8 @@ export class Director{
             // cancelAnimationFrame();
         }else{
             // 游戏结束
+            this.wxApi.playBoom();
+
             // alert('游戏结束');
 
             // 重绘各个图片(解决手机花屏问题)

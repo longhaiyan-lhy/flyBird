@@ -6,6 +6,7 @@ import { Land } from "./js/runtime/Land.js";
 import { Bird } from "./js/player/Birds.js";
 import { Score } from "./js/player/Score.js";
 import { StartButton } from "./js/player/StartButton.js";
+import { WxAPI } from "./WxAPI.js";
 
 export class Main{
     constructor(){
@@ -39,7 +40,29 @@ export class Main{
         this.dataStore.imgs = map;
         this.dataStore.canvas = this.canvas;
         this.dataStore.ctx = this.ctx;
-        this.init();
+
+
+        const api = new WxAPI();
+
+        // api.playMusic();
+        // api.getSystemInfo();
+        // api.sendHttp();
+        // api.socket();
+        // api.downLoad();
+
+
+        wx.getUserInfo({
+          success:res=>{
+            this.init();
+          },
+          fail:err=>{
+            api.getUserInfo(() => {
+              this.init();
+            });
+          }
+        })
+        
+
     }
 
 
