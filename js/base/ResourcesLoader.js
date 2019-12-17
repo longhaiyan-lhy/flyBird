@@ -12,7 +12,8 @@ export class ResourcesLoader{
         // 遍历map集合，将其每一个value替换为图片对象
         for(let [key,val] of this.map){
             // console.log(key,val);
-            const image = new Image();
+            const image = wx.createImage();
+            // const image = new Image();
             image.src = val;
             this.map.set(key,image);// 替换原来的值
         }

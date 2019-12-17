@@ -59,3 +59,5 @@
         |--game.json
         |--project.config.json
         |--Main.js
+
+game.js调用main.js

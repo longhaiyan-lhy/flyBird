@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>    
+        // 1. 对象冒充
+        /* function Person(name,sex){
+            this.name = name;
+            this.sex = sex;
+            this.say = function(){
+                console.log('My name is '+this.name+",I'm a"+this.sex);
+            }
+        }
+        function Lucy(name,sex){
+            this.s = Person;
+            this.s('Lucy','girl')
+        }
+        var lulu = new Lucy();
+        lulu.say(); */
+
+
+        // 2. 原型
+       /*  function Person(name,sex){
+            this.name = name;
+            this.sex = sex;
+           
+        }
+        Person.prototype.say = function(){
+            console.log('My name is '+this.name+",I'm a "+this.sex);
+        }
+        function Lucy(){
+        }
+        Lucy.prototype = new Person('Lucy','girl');
+        var s = new Lucy();
+        console.log(s.name,s.sex);
+        s.say(); */
+
+        // 3. call/apply
+        /* function Person(name,sex){
+            this.name = name;
+            this.sex = sex;
+            this.say = function(){
+                console.log('My name is '+this.name+",I'm a "+this.sex);
+            }
+        }
+        function Lucy(name,sex){
+            Person.call(this,name,sex);
+        }
+        var s = new Lucy('Lucy','sex');
+        console.log(s.name,s.sex);
+        s.say(); */
+
+
+
+        // 判断一个字符串中出现次数最多的字符，统计这个次数
+        var str = 'asdfssaaasasasassssssssssssssssssssssaa';
+        var arr = [];
+        // 使用关联数组
+        for(var i=0;i<str.length;i++){
+            if(!arr[str[i]]){
+                arr[str[i]] = 1;
+            }else{
+                arr[str[i]]++;
+            }
+        }
+        var max = str[0];
+        for(var j in arr){
+            if(arr[j] > arr[max]){
+                max = j;
+            }
+        }
+        console.log(max);
+    </script>
+</body>
+</html>
